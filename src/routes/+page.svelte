@@ -492,6 +492,7 @@
 	.trust-visual .trust-visual__surface--source {
 		display: flex;
 		align-items: center;
+		margin-top: 2rem;
 		margin-left: 4rem;
 		gap: 0.5rem;
 	}
@@ -504,6 +505,10 @@
 		background: currentColor;
 		-webkit-mask: var(--icon-source) center / contain no-repeat;
 		mask: var(--icon-source) center / contain no-repeat;
+	}
+
+	.trust-visual--chat {
+		gap: 3rem;
 	}
 
 	.trust-visual--chat :global(.user-message) {
