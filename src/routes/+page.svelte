@@ -461,6 +461,12 @@
 		overflow: hidden;
 	}
 
+	/* Fades the bottom of the visual into the card's white ground before the heading. */
+	.trust-visual {
+		-webkit-mask-image: linear-gradient(to bottom, var(--brand-color-black) 60%, transparent 100%);
+		mask-image: linear-gradient(to bottom, var(--brand-color-black) 60%, transparent 100%);
+	}
+
 	.trust-visual p {
 		margin: 0;
 	}
