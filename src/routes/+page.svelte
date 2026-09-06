@@ -240,10 +240,10 @@
 				<FeatureCard>
 					<div class="feature-grid__card feature-grid__card--illustrated">
 						<div class="trust-visual trust-visual--chat" aria-hidden="true">
-							<UserMessage>Who was slowest this week?</UserMessage>
+							<UserMessage>Who fixed the checkout bug?</UserMessage>
 							<AiMessage>
-								I don't rate people. Here is how the checkout project moved this week: two of three
-								planned changes shipped.
+								The payments team shipped the fix on Tuesday after two rounds of review. I describe
+								work by team and project rather than by person.
 							</AiMessage>
 						</div>
 						<h3 class="type-component-heading">{trustPoints[1].title}</h3>
@@ -456,7 +456,7 @@
 		align-content: start;
 		margin-inline: -2rem;
 		margin-bottom: 1rem;
-		padding: 2rem 0 0 2rem;
+		padding: 1rem 0 0 2rem;
 		gap: 1rem;
 		overflow: hidden;
 	}
