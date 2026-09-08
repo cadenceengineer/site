@@ -3,6 +3,7 @@ export { default as AiMessage } from './AiMessage.svelte';
 export { default as BrandLogo } from './BrandLogo.svelte';
 export { default as Button } from './Button.svelte';
 export { default as ChatInput } from './ChatInput.svelte';
+export { default as CitationsModal } from './CitationsModal.svelte';
 export { default as ContactForm } from './ContactForm.svelte';
 export { default as CopyrightLabel } from './CopyrightLabel.svelte';
 export { default as FeatureCard } from './FeatureCard.svelte';

@@ -19,6 +19,7 @@
 }
 
 :root {
+	--navigation-row-height: 3rem;
 	--brand-color-black: #000000;
 	--brand-color-white: #ffffff;
 	--brand-color-pink: #ef406c;

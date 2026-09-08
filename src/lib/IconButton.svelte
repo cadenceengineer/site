@@ -2,12 +2,13 @@
 	type Props = {
 		icon: string;
 		label: string;
+		onclick?: (event: MouseEvent) => void;
 	};
 
-	let { icon, label }: Props = $props();
+	let { icon, label, onclick }: Props = $props();
 </script>
 
-<button class="icon-button" type="button" aria-label={label} title={label}>
+<button class="icon-button" type="button" aria-label={label} title={label} {onclick}>
 	<span class="icon-button__icon" style:--icon-source={`url("${icon}")`} aria-hidden="true"></span>
 </button>
 

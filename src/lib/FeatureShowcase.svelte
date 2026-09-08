@@ -8,19 +8,15 @@
 		caption: string;
 		children?: Snippet;
 		description: string;
-		feature: string;
 	};
 
-	let { cardPosition = 'right', caption, children, description, feature }: Props = $props();
+	let { cardPosition = 'right', caption, children, description }: Props = $props();
 </script>
 
 <Section>
 	<div class="feature-showcase" class:feature-showcase--card-left={cardPosition === 'left'}>
 		<div class="feature-showcase__description">
-			<header>
-				<h2 class="type-component-heading">{feature}</h2>
-				<h3 class="type-section-title">{caption}</h3>
-			</header>
+			<h2 class="type-section-title">{caption}</h2>
 
 			<p class="type-body">{description}</p>
 		</div>
@@ -59,13 +55,7 @@
 		gap: 2rem;
 	}
 
-	.feature-showcase__description header {
-		display: grid;
-		gap: 2rem;
-	}
-
 	.feature-showcase__description h2,
-	.feature-showcase__description h3,
 	.feature-showcase__description p {
 		margin: 0;
 	}

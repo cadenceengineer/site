@@ -6,9 +6,15 @@ system documented by
 
 ## Current implementation
 
-Verified on August 27, 2026, the home page contains the product hero; Daily and Chat feature
-showcases; AI-provider and connected-tool logo sections; and Basic, Premium, and Enterprise pricing
-cards. The displayed plans describe the current public-site proposal and are intentionally independent
+Verified on September 6, 2026, the home page contains the product hero with the shared tagline; a short
+introduction section describing CadenceEngineer and who it is for; Daily and Chat feature showcases whose samples open a Citations modal from the shared
+brackets action; a "Built to be checked" section with the three trust points (Citations, teams not
+people, nothing to maintain); connected-tool and AI-provider logo sections; a numbered three-step
+"How it works" section ending in the access call to action; section titles stand alone without
+eyebrow labels; and, behind `PUBLIC_PRICING_ENABLED`, the
+Basic, Premium, and Enterprise pricing cards. The page sets a meta description and Open Graph and
+Twitter card tags; `static/og.png` is the 2400×1260 preview image and `PUBLIC_SITE_ORIGIN`
+(default `https://cadence.engineer`) is the absolute origin used in those tags. The displayed plans describe the current public-site proposal and are intentionally independent
 from the plans currently implemented by the API. The shared layout supplies the announcement banner,
 header, and footer. Contact, cookies, imprint, privacy, and terms pages are also present. The
 prerendered `/404/` page handles unknown paths with the shared site layout and a concise link home.
