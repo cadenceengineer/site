@@ -144,3 +144,8 @@ shared typography, buttons, links, inputs, cards, modals, or icon controls.
 All states belong to the shared component. A visual exception is valid only when explicitly requested
 by the user and documented with its reason and scope. Repeated exceptions must become named variants
 or coordinated changes to the brand specification and every consumer.
+
+September 9, 2026: dependency security updates include a Cookie 0.7.2 override in
+`pnpm-workspace.yaml`. CI validates/audits `develop`, `main`, and PRs. Public-page and mocked
+same-origin contact submission smoke tests run with `pnpm exec playwright test` after
+`pnpm exec playwright install chromium`; they never send real email.

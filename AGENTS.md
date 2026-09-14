@@ -252,3 +252,8 @@ Before handing off implementation changes, run:
 pnpm check
 pnpm build
 ```
+
+September 9, 2026: dependency security updates include a Cookie 0.7.2 override in
+`pnpm-workspace.yaml`. CI validates/audits `develop`, `main`, and PRs. Public-page and mocked
+same-origin contact submission smoke tests run with `pnpm exec playwright test` after
+`pnpm exec playwright install chromium`; they never send real email.
