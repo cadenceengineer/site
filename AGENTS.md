@@ -1,5 +1,10 @@
 # Repository guidance for agents
 
+September 16, 2026: Test and Enterprise replace the public paid-plan cards. See README's
+Testing-phase plans section for the current Figma composition and checkout behavior; it supersedes
+older Basic/Premium acquisition descriptions below. Future paid pricing/scope must not ship publicly.
+
+
 ## Project Purpose
 
 `site` is the static public website and acquisition experience for CadenceEngineer.
