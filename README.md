@@ -147,6 +147,13 @@ September 9, 2026: dependency security updates include a Cookie 0.7.2 override i
 same-origin contact submission smoke tests run with `pnpm exec playwright test` after
 `pnpm exec playwright install chromium`; they never send real email.
 
+October 7, 2026: targeted dependency overrides require patched `brace-expansion` 5.0.12,
+`devalue` 5.9.3, `source-map-js` 1.2.2, and `postcss-selector-parser` 7.1.6 when an upstream
+dependency requests a vulnerable version. The selector-parser override also covers Tailwind
+Typography's older 6.x dependency. Keep these overrides until upstream ranges resolve safe
+versions, and validate changes with `pnpm audit`, `pnpm check`, `pnpm build`, and the Playwright
+smoke tests. The audit remains enabled in CI without advisory suppression.
+
 ## Testing-phase plans (September 16, 2026)
 
 Only Test and Enterprise are offered. Public copy lives in `src/lib/pricing.ts`; future paid
