@@ -11,11 +11,9 @@ introduction section describing CadenceEngineer and who it is for; Daily and Cha
 brackets action; a "Built to be checked" section with the three trust points (Citations, teams not
 people, nothing to maintain); connected-tool and AI-provider logo sections; a numbered three-step
 "How it works" section ending in the access call to action; section titles stand alone without
-eyebrow labels; and, behind `PUBLIC_PRICING_ENABLED`, the
-Basic, Premium, and Enterprise pricing cards. The page sets a meta description and Open Graph and
+eyebrow labels; and the Test and Enterprise plan cards. The page sets a meta description and Open Graph and
 Twitter card tags; `static/og.png` is the 2400×1260 preview image and `PUBLIC_SITE_ORIGIN`
-(default `https://cadence.engineer`) is the absolute origin used in those tags. The displayed plans describe the current public-site proposal and are intentionally independent
-from the plans currently implemented by the API. The shared layout supplies the announcement banner,
+(default `https://cadence.engineer`) is the absolute origin used in those tags. Test seat and message allowances match the API migration defaults. Enterprise is a contact offering. The shared layout supplies the announcement banner,
 header, and footer. Contact, cookies, imprint, privacy, and terms pages are also present. The
 prerendered `/404/` page handles unknown paths with the shared site layout and a concise link home.
 The site remains entirely static and does not call the API.
@@ -54,8 +52,8 @@ pnpm check
 pnpm build
 ```
 
-The home page's Basic, Premium, and Enterprise pricing section is hidden by default while
-CadenceEngineer is in early access. Set `PUBLIC_PRICING_ENABLED=true` at build time to show it.
+The home page always shows the testing-phase Test (€0) and Enterprise cards. Future paid
+plan prices and scopes are not shipped. `PUBLIC_PRICING_ENABLED` is retired.
 
 `/contact` carries the contact form. It posts JSON to the site's own `/api/contact`, which the
 `Caddyfile` reverse-proxies to the API's `POST /v1/contact` while attaching the shared
@@ -70,8 +68,8 @@ topic; the header's Request access button links to the test-access variant whene
 disabled.
 
 Links to the web application are disabled by default. Set `PUBLIC_APP_LINKS_ENABLED=true` to show the
-header's Sign in link and the Basic and Premium pricing cards' Get Started links. The Enterprise
-Contact link remains available regardless of this setting.
+header's Sign in link and send Test's Get started action to the app. Otherwise Get started opens
+`/contact/?topic=test_access`. Enterprise's Contact action always opens `/contact/?topic=question`.
 
 When web-app links are enabled, they point to `https://app.cadence.engineer/signin` by default. Set
 `PUBLIC_APP_ORIGIN` to the web application's origin to override it. For example, a development site
@@ -105,9 +103,8 @@ HTTPS. Do not include `/signin` in `PUBLIC_APP_ORIGIN`; the site appends that ro
 Copy only the formats and individual interface icons used by the website. Keep the relevant font and third-party icon notices with copied assets. Do not load brand files directly from repository URLs.
 
 `ProviderSection` composes the shared responsive `LogoGrid`, which supports at most two columns and
-collapses to one column on small screens. `PricingCard` composes the shared `FeatureCard`, `Button`,
-and `Pill` primitives. Basic, Premium, and Enterprise select documented primary, secondary, and
-inverse variants; the pricing component does not override those primitives. Provider and plan content
+collapses to one column on small screens. `PricingCard` composes `FeatureCard`, `BrandLogo`, and
+full-width `Button` primitives. Test uses the standard surface and Enterprise uses inverse variants. Provider and plan content
 remains deterministic interface copy and therefore uses Satoshi.
 
 ## Typography
@@ -144,3 +141,29 @@ shared typography, buttons, links, inputs, cards, modals, or icon controls.
 All states belong to the shared component. A visual exception is valid only when explicitly requested
 by the user and documented with its reason and scope. Repeated exceptions must become named variants
 or coordinated changes to the brand specification and every consumer.
+
+September 9, 2026: dependency security updates include a Cookie 0.7.2 override in
+`pnpm-workspace.yaml`. CI validates/audits `develop`, `main`, and PRs. Public-page and mocked
+same-origin contact submission smoke tests run with `pnpm exec playwright test` after
+`pnpm exec playwright install chromium`; they never send real email.
+
+October 7, 2026: targeted dependency overrides require patched `brace-expansion` 5.0.12,
+`devalue` 5.9.3, `source-map-js` 1.2.2, and `postcss-selector-parser` 7.1.6 when an upstream
+dependency requests a vulnerable version. The selector-parser override also covers Tailwind
+Typography's older 6.x dependency. Keep these overrides until upstream ranges resolve safe
+versions, and validate changes with `pnpm audit`, `pnpm check`, `pnpm build`, and the Playwright
+smoke tests. The audit remains enabled in CI without advisory suppression.
+
+## Testing-phase plans (September 16, 2026)
+
+Only Test and Enterprise are offered. Public copy lives in `src/lib/pricing.ts`; future paid
+prices and scopes are deliberately absent. The supplied Figma screenshots and explicit dimensions
+are the reference: card sections have a 3rem gap; the header has a 1rem gap; the label uses the
+existing 1.5rem square Whorl, a 0.375rem gap, and a bold 1.5rem/1.5rem heading. Scope entries are
+separate body paragraphs with 1rem gaps. The Test price precedes scope, then the testing-phase
+notice and full-width Get started action. Enterprise is inverse, omits the price entirely, and ends
+with Contact. Cards have independent heights and stack at narrow widths. This named pricing
+composition intentionally replaces the previous pills and grouped feature lists in both applications.
+
+The Test offer includes 3 total users and 10 Bot messages per user per day. Plan copy describes the
+requested offering; this UI change does not implement adaptive model routing or private deployment.

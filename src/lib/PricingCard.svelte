@@ -1,116 +1,117 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-	import FeatureCard from './FeatureCard.svelte';
-	import Pill from './Pill.svelte';
-
-	type PricingSection = {
-		items: string[];
-		label: string;
-	};
+	import Card from './FeatureCard.svelte';
+	import BrandLogo from './BrandLogo.svelte';
 
 	type Props = {
-		actionHref?: string;
-		actionLabel?: string;
 		name: string;
+		subtitle: string;
+		price?: string;
 		period?: string;
-		price: string;
-		sections: PricingSection[];
-		tone?: 'basic' | 'enterprise' | 'premium';
+		scope: string[];
+		notice?: string;
+		tone?: 'test' | 'enterprise';
+		actionLabel?: string;
+		actionHref?: string;
+		onaction?: () => void;
+		disabled?: boolean;
 	};
-
-	let { actionHref, actionLabel, name, period, price, sections, tone = 'basic' }: Props = $props();
-	let buttonVariant: 'inverse' | 'primary' | 'secondary' = $derived(
-		tone === 'premium' ? 'secondary' : tone === 'enterprise' ? 'inverse' : 'primary'
-	);
-	let cardVariant: 'default' | 'inverse' = $derived(tone === 'enterprise' ? 'inverse' : 'default');
-	let pillTone: 'inverse' | 'primary' | 'secondary' = $derived(
-		tone === 'premium' ? 'secondary' : tone === 'enterprise' ? 'inverse' : 'primary'
-	);
+	let {
+		name,
+		subtitle,
+		price,
+		period,
+		scope,
+		notice,
+		tone = 'test',
+		actionLabel,
+		actionHref,
+		onaction,
+		disabled = false
+	}: Props = $props();
+	let inverse = $derived(tone === 'enterprise');
 </script>
 
-<FeatureCard class="pricing-card" variant={cardVariant}>
-	<article class="pricing-card__content">
-		<header>
-			<Pill tone={pillTone}>{name}</Pill>
-			<p class="price">
+<Card class="pricing-card" variant={inverse ? 'inverse' : 'default'}>
+	<article class="pricing-card__content" aria-label={`${name} plan`}>
+		<header class="pricing-card__header">
+			<div class="pricing-card__label">
+				<BrandLogo alt="" {inverse} />
+				<h3>{name}</h3>
+			</div>
+			<p>{subtitle}</p>
+		</header>
+		{#if price}
+			<p class="pricing-card__price">
 				<strong class="type-display">{price}</strong>
 				{#if period}<span>{period}</span>{/if}
 			</p>
-			{#if actionHref && actionLabel}
-				<Button href={actionHref} variant={buttonVariant} width="full">{actionLabel}</Button>
-			{/if}
-		</header>
-
-		<div class="pricing-card__details">
-			{#each sections as section (section.label)}
-				<section aria-label={section.label}>
-					<h4 class="visually-hidden">{section.label}</h4>
-					{#each section.items as item (item)}
-						<p>{item}</p>
-					{/each}
-				</section>
-			{/each}
+		{/if}
+		<div class="pricing-card__scope">
+			{#each scope as item (item)}<p>{item}</p>{/each}
 		</div>
+		{#if notice}<p class="pricing-card__notice">{notice}</p>{/if}
+		{#if actionLabel && (actionHref || onaction)}
+			<Button
+				href={actionHref}
+				onclick={onaction}
+				{disabled}
+				variant={inverse ? 'inverse' : 'primary'}
+				width="full">{actionLabel}</Button
+			>
+		{/if}
 	</article>
-</FeatureCard>
+</Card>
 
 <style>
 	:global(.feature-card.pricing-card) {
 		min-width: 0;
 		height: fit-content;
+		padding: 0;
 	}
-
 	.pricing-card__content,
-	.pricing-card__content header,
-	.pricing-card__details,
-	.pricing-card__details section {
+	.pricing-card__header,
+	.pricing-card__scope {
 		display: flex;
 		flex-direction: column;
 	}
-
 	.pricing-card__content {
 		box-sizing: border-box;
 		padding: 2rem;
 		gap: 3rem;
+		overflow-wrap: anywhere;
 	}
-
-	.pricing-card__content header {
-		align-items: flex-start;
-		gap: 3rem;
+	.pricing-card__header,
+	.pricing-card__scope {
+		gap: 1rem;
 	}
-
-	.price,
-	.pricing-card__details p {
+	.pricing-card__content p,
+	.pricing-card__label h3 {
 		margin: 0;
 	}
-
-	.price {
+	.pricing-card__label {
+		display: flex;
+		align-items: center;
+		gap: 0.375rem;
+	}
+	.pricing-card__label :global(.brand-logo) {
+		width: 1.5rem;
+		height: 1.5rem;
+		object-fit: contain;
+	}
+	.pricing-card__label h3 {
+		font-size: 1.5rem;
+		line-height: 1.5rem;
+		font-weight: var(--font-weight-bold);
+	}
+	.pricing-card__price {
 		display: flex;
 		align-items: baseline;
+		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
-
-	.price span {
-		font-weight: var(--font-weight-interface-regular);
-	}
-
-	.pricing-card__details {
-		gap: 3rem;
-	}
-
-	.pricing-card__details section {
-		gap: 0.5rem;
-	}
-
-	.visually-hidden {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border: 0;
+	.pricing-card__price span,
+	.pricing-card__notice {
+		font-weight: var(--font-weight-bold);
 	}
 </style>

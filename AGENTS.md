@@ -1,5 +1,10 @@
 # Repository guidance for agents
 
+September 16, 2026: Test and Enterprise replace the public paid-plan cards. See README's
+Testing-phase plans section for the current Figma composition and checkout behavior; it supersedes
+older Basic/Premium acquisition descriptions below. Future paid pricing/scope must not ship publicly.
+
+
 ## Project Purpose
 
 `site` is the static public website and acquisition experience for CadenceEngineer.
@@ -252,3 +257,8 @@ Before handing off implementation changes, run:
 pnpm check
 pnpm build
 ```
+
+September 9, 2026: dependency security updates include a Cookie 0.7.2 override in
+`pnpm-workspace.yaml`. CI validates/audits `develop`, `main`, and PRs. Public-page and mocked
+same-origin contact submission smoke tests run with `pnpm exec playwright test` after
+`pnpm exec playwright install chromium`; they never send real email.

@@ -14,7 +14,8 @@
 		Section,
 		UserMessage
 	} from '$lib';
-	import { appLinksEnabled, pricingEnabled, signInUrl, siteOrigin } from '$lib/app';
+	import { testPlan, enterprisePlan } from '$lib/pricing';
+	import { appLinksEnabled, signInUrl, siteOrigin } from '$lib/app';
 	import anthropicLogo from '$lib/assets/providers/anthropic.svg';
 	import githubLogo from '$lib/assets/providers/github.svg';
 	import mondayLogo from '$lib/assets/providers/monday.svg';
@@ -65,7 +66,7 @@
 			url: 'https://github.com/cadenceengineer'
 		},
 		{
-			claim: 'The first Premium organization connected a Jira site.',
+			claim: 'The first organization connected a Jira site.',
 			source: 'GitHub · cadenceengineer/web · pull request',
 			url: 'https://github.com/cadenceengineer'
 		},
@@ -198,9 +199,9 @@
 				<div class="chat-answer">
 					<AiMessage>
 						For Jira Cloud, yes. The pairing through an installed Forge app shipped on Tuesday, and
-						the first Premium organization connected its site the day after. Jira Server and Data
-						Center are not supported, and nothing in the recent activity suggests that is planned.
-						One issue about hourly token rotation is still open; it is not blocking.
+						the first organization connected its site the day after. Jira Server and Data Center are
+						not supported, and nothing in the recent activity suggests that is planned. One issue
+						about hourly token rotation is still open; it is not blocking.
 					</AiMessage>
 					<ActionToolbar label="Chat answer actions">
 						<IconButton icon={copyIcon} label="Copy answer" />
@@ -308,61 +309,23 @@
 		</div>
 	</Section>
 
-	{#if pricingEnabled}
-		<Section>
-			<div class="pricing" aria-labelledby="pricing-title">
-				<h2 class="type-section-title" id="pricing-title">Pricing</h2>
-
-				<div class="pricing__grid">
-					<PricingCard
-						name="Basic"
-						price="€30"
-						period="/ month"
-						actionLabel={appLinksEnabled ? 'Get Started' : undefined}
-						actionHref={appLinksEnabled ? signInUrl : undefined}
-						sections={[
-							{ label: 'Scope', items: ['1 organization', '1 user'] },
-							{ label: 'Features', items: ['Daily', 'Chat', '30 messages per day'] },
-							{ label: 'AI providers', items: ['OpenAI', 'Anthropic', 'Mistral', 'Novita'] },
-							{ label: 'Tools', items: ['GitHub', 'monday.com'] }
-						]}
-					/>
-
-					<PricingCard
-						tone="premium"
-						name="Premium"
-						price="€50"
-						period="/ month"
-						actionLabel={appLinksEnabled ? 'Get Started' : undefined}
-						actionHref={appLinksEnabled ? signInUrl : undefined}
-						sections={[
-							{ label: 'Scope', items: ['1 organization', '5 users'] },
-							{ label: 'Features', items: ['Daily', 'Chat', 'Unlimited messages per day'] },
-							{ label: 'AI providers', items: ['OpenAI', 'Anthropic', 'Mistral', 'Novita'] },
-							{ label: 'Tools', items: ['GitHub', 'monday.com', 'Jira', 'Slack'] }
-						]}
-					/>
-
-					<PricingCard
-						tone="enterprise"
-						name="Enterprise"
-						price="Custom"
-						actionLabel="Contact"
-						actionHref="mailto:dominik.strasser@cadence.engineer"
-						sections={[
-							{ label: 'Scope', items: ['Fully customizable'] },
-							{ label: 'Features', items: ['All features'] },
-							{
-								label: 'AI provider',
-								items: ['Fully self-hosted', 'or', 'Custom AI endpoint']
-							},
-							{ label: 'Tools', items: ['Support for all available tools'] }
-						]}
-					/>
-				</div>
+	<Section>
+		<div class="pricing" aria-labelledby="pricing-title">
+			<h2 class="type-section-title" id="pricing-title">Plans</h2>
+			<div class="pricing__grid">
+				<PricingCard
+					{...testPlan}
+					actionLabel="Get started"
+					actionHref={appLinksEnabled ? signInUrl : `${base}/contact/?topic=test_access`}
+				/>
+				<PricingCard
+					{...enterprisePlan}
+					actionLabel="Contact"
+					actionHref={`${base}/contact/?topic=question`}
+				/>
 			</div>
-		</Section>
-	{/if}
+		</div>
+	</Section>
 </main>
 
 <style>
@@ -605,7 +568,7 @@
 
 	.pricing__grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 2rem;
 	}
 
