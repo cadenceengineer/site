@@ -15,7 +15,7 @@
 		UserMessage
 	} from '$lib';
 	import { testPlan, enterprisePlan } from '$lib/pricing';
-	import { appLinksEnabled, signInUrl, siteOrigin } from '$lib/app';
+	import { appLinksEnabled, appUrl, siteOrigin } from '$lib/app';
 	import anthropicLogo from '$lib/assets/providers/anthropic.svg';
 	import githubLogo from '$lib/assets/providers/github.svg';
 	import mondayLogo from '$lib/assets/providers/monday.svg';
@@ -301,7 +301,7 @@
 			</ol>
 			<div class="feature-grid__action">
 				{#if appLinksEnabled}
-					<Button href={signInUrl}>Get started</Button>
+					<Button href={appUrl}>Get started</Button>
 				{:else}
 					<Button href={`${base}/contact/?topic=test_access`}>Request access</Button>
 				{/if}
@@ -316,7 +316,7 @@
 				<PricingCard
 					{...testPlan}
 					actionLabel="Get started"
-					actionHref={appLinksEnabled ? signInUrl : `${base}/contact/?topic=test_access`}
+					actionHref={appLinksEnabled ? appUrl : `${base}/contact/?topic=test_access`}
 				/>
 				<PricingCard
 					{...enterprisePlan}

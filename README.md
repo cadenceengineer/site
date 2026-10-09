@@ -71,7 +71,9 @@ Links to the web application are disabled by default. Set `PUBLIC_APP_LINKS_ENAB
 header's Sign in link and send Test's Get started action to the app. Otherwise Get started opens
 `/contact/?topic=test_access`. Enterprise's Contact action always opens `/contact/?topic=question`.
 
-When web-app links are enabled, they point to `https://app.cadence.engineer/signin` by default. Set
+When web-app links are enabled, they point to `https://app.cadence.engineer/` by default. The app
+checks the browser session and routes signed-in users to Daily (or Organization during onboarding),
+and users without a recoverable session to sign-in. Set
 `PUBLIC_APP_ORIGIN` to the web application's origin to override it. For example, a development site
 deployment can use:
 

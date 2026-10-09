@@ -13,7 +13,7 @@ for (const width of [1440, 390]) {
 		await expect(testPlan.getByText(/No automatic upgrade or charges/)).toBeVisible();
 		await expect(testPlan.getByRole('link', { name: 'Get started' })).toHaveAttribute(
 			'href',
-			/(?:\/signin|\/contact\/\?topic=test_access)$/
+			/^(?:https?:\/\/[^/]+\/|\/contact\/\?topic=test_access)$/
 		);
 		await expect(enterprise.getByRole('link', { name: 'Contact', exact: true })).toHaveAttribute(
 			'href',
