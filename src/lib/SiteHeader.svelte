@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { appLinksEnabled, signInUrl } from '$lib/app';
+	import { appLinksEnabled, appUrl } from '$lib/app';
 	import BrandLogo from './BrandLogo.svelte';
 	import Button from './Button.svelte';
 </script>
@@ -14,7 +14,7 @@
 		</a>
 
 		{#if appLinksEnabled}
-			<Button href={signInUrl}>Sign in</Button>
+			<Button href={appUrl}>Sign in</Button>
 		{:else}
 			<Button href={`${base}/contact/?topic=test_access`}>Request access</Button>
 		{/if}
