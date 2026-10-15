@@ -89,8 +89,8 @@
 
 <Modal
 	label="Message sent"
-	title="Thanks, your message is on its way."
-	description="I'll reply within two working days with an invitation."
+	title="Thanks"
+	description="Your message is on its way. We’ll reply as soon as possible."
 	bind:open={confirmationOpen}
 	focusOnOpen
 />

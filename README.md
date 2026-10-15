@@ -183,3 +183,5 @@ and text selection remain usable. Pending submissions prevent dismissal.
 Modal structure uses the shared heading and description followed by the main interaction, with
 full-width primary buttons and forms. Inside clicks never dismiss a modal, including padding;
 outside clicks and Escape dismiss it unless busy. Informational modals need no artificial action.
+
+Shared modals can grow to 42rem when space allows, retaining a 1rem margin on narrow screens.

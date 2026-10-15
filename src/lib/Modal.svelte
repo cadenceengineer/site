@@ -71,7 +71,7 @@
 
 <style>
 	.modal {
-		width: min(calc(100% - 2rem), 28rem);
+		width: min(calc(100% - 2rem), 42rem);
 		box-sizing: border-box;
 		border: 0;
 		border-radius: 3rem;
