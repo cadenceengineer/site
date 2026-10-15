@@ -169,3 +169,9 @@ composition intentionally replaces the previous pills and grouped feature lists 
 
 The Test offer includes 3 total users and 10 Bot messages per user per day. Plan copy describes the
 requested offering; this UI change does not implement adaptive model routing or private deployment.
+
+## Development tracking
+
+The [Development project board](https://github.com/orgs/cadenceengineer/projects/4) tracks planned, active, blocked, and completed
+work across repositories, with weekly Monday–Sunday sprints. Add issues from their owning repository
+and keep Status, Sprint, Priority, and Assignees current. See `AGENTS.md` for issue lifecycle rules.
