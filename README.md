@@ -177,5 +177,9 @@ work across repositories, with weekly Monday–Sunday sprints. Add issues from t
 and keep Status, Sprint, Priority, and Assignees current. See `AGENTS.md` for issue lifecycle rules.
 
 October 15, 2026: shared modals use left-aligned text and 2rem headings, with no Close or dismissal
-buttons. Escape, backdrop clicks, and clicks on non-interactive content close them; links, controls,
+buttons. Escape and backdrop clicks close them; links, controls,
 and text selection remain usable. Pending submissions prevent dismissal.
+
+Modal structure uses the shared heading and description followed by the main interaction, with
+full-width primary buttons and forms. Inside clicks never dismiss a modal, including padding;
+outside clicks and Escape dismiss it unless busy. Informational modals need no artificial action.

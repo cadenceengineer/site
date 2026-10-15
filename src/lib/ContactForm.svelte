@@ -87,12 +87,13 @@
 	}
 </script>
 
-<Modal label="Message sent" bind:open={confirmationOpen} focusOnOpen>
-	<div class="contact-form__confirmation">
-		<h2 class="type-section-title">Thanks, your message is on its way.</h2>
-		<p class="type-body">I'll reply within two working days with an invitation.</p>
-	</div>
-</Modal>
+<Modal
+	label="Message sent"
+	title="Thanks, your message is on its way."
+	description="I'll reply within two working days with an invitation."
+	bind:open={confirmationOpen}
+	focusOnOpen
+/>
 
 <form class="contact-form" onsubmit={submit}>
 	<FormField label="Topic" name="topic" type="select" options={topics} bind:value={topic} />
@@ -157,7 +158,7 @@
 		/>
 	</div>
 	<div class="contact-form__actions">
-		<Button type="submit" disabled={status === 'pending'}>
+		<Button width="full" type="submit" disabled={status === 'pending'}>
 			{status === 'pending' ? 'Sending…' : 'Send'}
 		</Button>
 	</div>
@@ -183,15 +184,5 @@
 		overflow: hidden;
 		clip-path: inset(50%);
 		white-space: nowrap;
-	}
-
-	.contact-form__confirmation {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.contact-form__confirmation h2,
-	.contact-form__confirmation p {
-		margin: 0;
 	}
 </style>

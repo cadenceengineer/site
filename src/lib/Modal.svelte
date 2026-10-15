@@ -3,7 +3,9 @@
 
 	type Props = {
 		busy?: boolean;
-		children: Snippet;
+		children?: Snippet;
+		title?: string;
+		description?: string;
 		focusOnOpen?: boolean;
 		label: string;
 		open?: boolean;
@@ -14,8 +16,11 @@
 		children,
 		focusOnOpen = false,
 		label,
+		title = label,
+		description,
 		open = $bindable(false)
 	}: Props = $props();
+	const descriptionId = $props.id();
 	let dialog: HTMLDialogElement;
 
 	$effect(() => {
@@ -36,27 +41,32 @@
 	bind:this={dialog}
 	class="modal"
 	aria-label={label}
+	aria-describedby={description ? descriptionId : undefined}
 	tabindex={focusOnOpen ? -1 : undefined}
 	onclick={(event) => {
 		event.stopPropagation();
-		const target = event.target;
-		if (!(target instanceof Element)) return;
-		// Controls must finish their own interaction without dismissing the dialog.
+		if (event.target !== event.currentTarget) return;
+		const bounds = event.currentTarget.getBoundingClientRect();
 		if (
-			target.closest(
-				'a, button, input, textarea, select, label, summary, [role="button"], [contenteditable="true"]'
-			)
+			event.clientX < bounds.left ||
+			event.clientX > bounds.right ||
+			event.clientY < bounds.top ||
+			event.clientY > bounds.bottom
 		)
-			return;
-		if (window.getSelection()?.toString()) return;
-		close();
+			close();
 	}}
 	oncancel={(event) => {
 		if (busy) event.preventDefault();
 	}}
 	onclose={() => (open = false)}
 >
-	{@render children()}
+	<div class="modal__content">
+		<header class="modal__header">
+			<h2 class="type-section-title">{title}</h2>
+			{#if description}<p id={descriptionId}>{description}</p>{/if}
+		</header>
+		{#if children}{@render children()}{/if}
+	</div>
 </dialog>
 
 <style>
@@ -71,6 +81,19 @@
 		box-shadow: var(--shadow-modal);
 		color: var(--color-foreground);
 		text-align: left;
+	}
+
+	.modal__content {
+		display: grid;
+		gap: 2rem;
+	}
+	.modal__header {
+		display: grid;
+		gap: 1rem;
+	}
+	.modal__header h2,
+	.modal__header p {
+		margin: 0;
 	}
 
 	.modal::backdrop {

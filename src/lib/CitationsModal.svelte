@@ -21,9 +21,13 @@
 
 <IconButton icon={bracketsIcon} {label} onclick={() => (open = true)} />
 
-<Modal label={title} bind:open focusOnOpen>
+<Modal
+	description="Open a source to read the evidence behind each claim."
+	label={title}
+	bind:open
+	focusOnOpen
+>
 	<div class="citations font-interface">
-		<h2 class="type-section-title">{title}</h2>
 		<!-- A Citation points at the provider source it verifies, never at a site route. -->
 		<!-- eslint-disable svelte/no-navigation-without-resolve -->
 		<ul>
@@ -47,10 +51,6 @@
 	.citations {
 		display: grid;
 		gap: 1rem;
-	}
-
-	.citations h2 {
-		margin: 0;
 	}
 
 	.citations ul {
