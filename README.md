@@ -175,3 +175,7 @@ requested offering; this UI change does not implement adaptive model routing or 
 The [Development project board](https://github.com/orgs/cadenceengineer/projects/4) tracks planned, active, blocked, and completed
 work across repositories, with weekly Monday–Sunday sprints. Add issues from their owning repository
 and keep Status, Sprint, Priority, and Assignees current. See `AGENTS.md` for issue lifecycle rules.
+
+October 15, 2026: shared modals use left-aligned text and 2rem headings, with no Close or dismissal
+buttons. Escape, backdrop clicks, and clicks on non-interactive content close them; links, controls,
+and text selection remain usable. Pending submissions prevent dismissal.

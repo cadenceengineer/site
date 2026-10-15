@@ -89,11 +89,8 @@
 
 <Modal label="Message sent" bind:open={confirmationOpen} focusOnOpen>
 	<div class="contact-form__confirmation">
-		<h2 class="type-subheading">Thanks, your message is on its way.</h2>
+		<h2 class="type-section-title">Thanks, your message is on its way.</h2>
 		<p class="type-body">I'll reply within two working days with an invitation.</p>
-		<div class="contact-form__confirmation-actions">
-			<Button type="button" onclick={() => (confirmationOpen = false)}>Close</Button>
-		</div>
 	</div>
 </Modal>
 
@@ -196,10 +193,5 @@
 	.contact-form__confirmation h2,
 	.contact-form__confirmation p {
 		margin: 0;
-	}
-
-	/* Brand: the modal's action group follows its content after a 2rem gap. */
-	.contact-form__confirmation-actions {
-		margin-top: 1rem;
 	}
 </style>

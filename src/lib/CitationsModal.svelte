@@ -1,6 +1,5 @@
 <script lang="ts">
 	import bracketsIcon from '$lib/assets/icons/brackets.svg';
-	import Button from './Button.svelte';
 	import IconButton from './IconButton.svelte';
 	import Modal from './Modal.svelte';
 
@@ -24,7 +23,7 @@
 
 <Modal label={title} bind:open focusOnOpen>
 	<div class="citations font-interface">
-		<h2 class="type-subheading">{title}</h2>
+		<h2 class="type-section-title">{title}</h2>
 		<!-- A Citation points at the provider source it verifies, never at a site route. -->
 		<!-- eslint-disable svelte/no-navigation-without-resolve -->
 		<ul>
@@ -41,9 +40,6 @@
 			{/each}
 		</ul>
 		<!-- eslint-enable svelte/no-navigation-without-resolve -->
-		<div class="citations__actions">
-			<Button type="button" onclick={() => (open = false)}>Close</Button>
-		</div>
 	</div>
 </Modal>
 
@@ -69,10 +65,5 @@
 		overflow-wrap: anywhere;
 		text-decoration: underline;
 		text-underline-offset: 0.15em;
-	}
-
-	/* Brand: the modal's action group follows its content after a 2rem gap. */
-	.citations__actions {
-		margin-top: 1rem;
 	}
 </style>

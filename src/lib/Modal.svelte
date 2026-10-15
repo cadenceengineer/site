@@ -38,7 +38,18 @@
 	aria-label={label}
 	tabindex={focusOnOpen ? -1 : undefined}
 	onclick={(event) => {
-		if (event.target === event.currentTarget) close();
+		event.stopPropagation();
+		const target = event.target;
+		if (!(target instanceof Element)) return;
+		// Controls must finish their own interaction without dismissing the dialog.
+		if (
+			target.closest(
+				'a, button, input, textarea, select, label, summary, [role="button"], [contenteditable="true"]'
+			)
+		)
+			return;
+		if (window.getSelection()?.toString()) return;
+		close();
 	}}
 	oncancel={(event) => {
 		if (busy) event.preventDefault();
@@ -59,6 +70,7 @@
 		background: var(--brand-color-white);
 		box-shadow: var(--shadow-modal);
 		color: var(--color-foreground);
+		text-align: left;
 	}
 
 	.modal::backdrop {
