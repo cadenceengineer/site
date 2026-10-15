@@ -262,3 +262,33 @@ September 9, 2026: dependency security updates include a Cookie 0.7.2 override i
 `pnpm-workspace.yaml`. CI validates/audits `develop`, `main`, and PRs. Public-page and mocked
 same-origin contact submission smoke tests run with `pnpm exec playwright test` after
 `pnpm exec playwright install chromium`; they never send real email.
+
+## Development board and issue lifecycle
+
+Use the [Development project](https://github.com/orgs/cadenceengineer/projects/4) to track ongoing work across repositories.
+This instruction authorizes agents working on this codebase to create and update relevant GitHub
+issues and project items as part of development.
+
+- Before starting, search the owning repository and project for an existing issue. Reuse it; create
+  a ticket for substantive untracked work and add it to the project. Keep cross-repository work
+  linked to issues in the repositories that own each change.
+- Keep project Status aligned with actual progress: Backlog for unplanned work, Ready for selected
+  work, In Progress when implementation starts, In Review when a change awaits review or validation,
+  Blocked when a dependency prevents progress, and Done when the issue is resolved.
+- Update the issue and project when code changes affect scope, progress, blockers, or completion.
+  Link the relevant commit or pull request and record validation results. A code edit alone does not
+  establish that a fix is complete.
+- Close an issue as completed and move its project item to Done when its acceptance criteria are
+  met and the fix is verified. If merge or deployment is required to satisfy those criteria, keep it
+  open until that happens. Leave partial fixes open and describe the remaining work. Reopen a
+  previously closed issue if evidence shows its fix is incomplete or the same bug has returned.
+- When new bugs, errors, or other actionable problems are discovered, search for duplicates first.
+  Create an issue in the owning repository if none exists, even when it is outside the current
+  task. Include observed versus expected behavior, reproduction steps or supporting evidence,
+  impact, and acceptance criteria; redact secrets and private customer data. Add it to the project,
+  normally in Backlog, and link related work. Distinguish suspected problems from confirmed bugs.
+- Set Priority and Assignees when known. Assign the current weekly Sprint to work actually being
+  undertaken; preserve completed items and their sprint for history. Do not silently reschedule
+  existing commitments.
+- If GitHub or project access is unavailable, continue useful local work and report the exact issue
+  or board updates still needed. Never claim an external update succeeded without verifying it.
