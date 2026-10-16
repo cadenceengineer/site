@@ -38,7 +38,7 @@
 						href={citation.url}
 						title={citation.source}
 						target="_blank"
-						rel="noopener noreferrer">{citation.claim}</a
+						rel="noopener noreferrer"><span class="font-generated">{citation.claim}</span></a
 					>
 				</li>
 			{/each}

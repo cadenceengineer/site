@@ -158,10 +158,10 @@
 		caption="Every day tells a story."
 		description="CadenceEngineer turns your organization's activity into one concise update each morning, the Daily. See what moved forward, what changed, and what needs attention next, without chasing updates or adding reporting work for anyone."
 	>
-		<article class="daily-summary font-generated">
-			<h4 class="type-section-title">Good morning, Dominik</h4>
+		<article class="daily-summary">
+			<h4 class="type-section-title font-generated">Good morning, Dominik</h4>
 
-			<div class="daily-summary__body">
+			<div class="daily-summary__body font-generated">
 				<p>
 					Yesterday, the Daily feature was completed and released in CadenceEngineer. It now brings
 					activity from GitHub and monday.com together in one clear update.
@@ -229,7 +229,7 @@
 								<span class="trust-visual__icon" style:--icon-source={`url("${bracketsIcon}")`}
 								></span>
 								<span>
-									<u>The release moved to Thursday.</u><br />
+									<u class="font-generated">The release moved to Thursday.</u><br />
 									GitHub · api · pull request #142
 								</span>
 							</p>
