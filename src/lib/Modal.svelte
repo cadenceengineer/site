@@ -71,6 +71,10 @@
 
 <style>
 	.modal {
+		--font-weight-regular: var(--font-weight-interface-regular);
+
+		font-family: var(--font-interface);
+		font-weight: var(--font-weight-interface-regular);
 		width: min(calc(100% - 2rem), 42rem);
 		box-sizing: border-box;
 		border: 0;
